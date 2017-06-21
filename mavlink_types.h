@@ -5,7 +5,12 @@
 #error "The C-MAVLink implementation requires Visual Studio 2010 or greater"
 #endif
 
+#include <stdbool.h>
 #include <stdint.h>
+
+#ifdef MAVLINK_USE_CXX_NAMESPACE
+namespace mavlink {
+#endif
 
 // Macro to define packed structures
 #ifdef __GNUC__
@@ -288,4 +293,6 @@ typedef struct __mavlink_msg_entry {
 #define MAVLINK_IFLAG_SIGNED  0x01
 #define MAVLINK_IFLAG_MASK    0x01 // mask of all understood bits
 
-
+#ifdef MAVLINK_USE_CXX_NAMESPACE
+} // namespace mavlink
+#endif
