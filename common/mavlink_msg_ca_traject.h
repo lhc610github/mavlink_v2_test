@@ -6,6 +6,7 @@
 MAVPACKED(
 typedef struct __mavlink_ca_traject_t {
  uint64_t time_usec; /*< Timestamp (micros since boot or Unix epoch)*/
+ uint64_t PC_time_usec; /*< Timestamp (micros since boot or Unix epoch)*/
  float t[2]; /*< Start time and finish time*/
  float trajectory_coefficient_x[7]; /*< x-axis trajectory coefficient*/
  float trajectory_coefficient_y[7]; /*< Y-axis trajectory coefficient*/
@@ -16,13 +17,13 @@ typedef struct __mavlink_ca_traject_t {
  uint8_t order_p_1; /*< Order plus one*/
 }) mavlink_ca_traject_t;
 
-#define MAVLINK_MSG_ID_CA_TRAJECT_LEN 131
-#define MAVLINK_MSG_ID_CA_TRAJECT_MIN_LEN 131
-#define MAVLINK_MSG_ID_153_LEN 131
-#define MAVLINK_MSG_ID_153_MIN_LEN 131
+#define MAVLINK_MSG_ID_CA_TRAJECT_LEN 139
+#define MAVLINK_MSG_ID_CA_TRAJECT_MIN_LEN 139
+#define MAVLINK_MSG_ID_153_LEN 139
+#define MAVLINK_MSG_ID_153_MIN_LEN 139
 
-#define MAVLINK_MSG_ID_CA_TRAJECT_CRC 188
-#define MAVLINK_MSG_ID_153_CRC 188
+#define MAVLINK_MSG_ID_CA_TRAJECT_CRC 77
+#define MAVLINK_MSG_ID_153_CRC 77
 
 #define MAVLINK_MSG_CA_TRAJECT_FIELD_T_LEN 2
 #define MAVLINK_MSG_CA_TRAJECT_FIELD_TRAJECTORY_COEFFICIENT_X_LEN 7
@@ -34,31 +35,33 @@ typedef struct __mavlink_ca_traject_t {
 #define MAVLINK_MESSAGE_INFO_CA_TRAJECT { \
     153, \
     "CA_TRAJECT", \
-    9, \
+    10, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_ca_traject_t, time_usec) }, \
-         { "t", NULL, MAVLINK_TYPE_FLOAT, 2, 8, offsetof(mavlink_ca_traject_t, t) }, \
-         { "trajectory_coefficient_x", NULL, MAVLINK_TYPE_FLOAT, 7, 16, offsetof(mavlink_ca_traject_t, trajectory_coefficient_x) }, \
-         { "trajectory_coefficient_y", NULL, MAVLINK_TYPE_FLOAT, 7, 44, offsetof(mavlink_ca_traject_t, trajectory_coefficient_y) }, \
-         { "trajectory_coefficient_z", NULL, MAVLINK_TYPE_FLOAT, 7, 72, offsetof(mavlink_ca_traject_t, trajectory_coefficient_z) }, \
-         { "trajectory_coefficient_r", NULL, MAVLINK_TYPE_FLOAT, 7, 100, offsetof(mavlink_ca_traject_t, trajectory_coefficient_r) }, \
-         { "num_keyframe", NULL, MAVLINK_TYPE_UINT8_T, 0, 128, offsetof(mavlink_ca_traject_t, num_keyframe) }, \
-         { "index_keyframe", NULL, MAVLINK_TYPE_UINT8_T, 0, 129, offsetof(mavlink_ca_traject_t, index_keyframe) }, \
-         { "order_p_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 130, offsetof(mavlink_ca_traject_t, order_p_1) }, \
+         { "PC_time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_ca_traject_t, PC_time_usec) }, \
+         { "t", NULL, MAVLINK_TYPE_FLOAT, 2, 16, offsetof(mavlink_ca_traject_t, t) }, \
+         { "trajectory_coefficient_x", NULL, MAVLINK_TYPE_FLOAT, 7, 24, offsetof(mavlink_ca_traject_t, trajectory_coefficient_x) }, \
+         { "trajectory_coefficient_y", NULL, MAVLINK_TYPE_FLOAT, 7, 52, offsetof(mavlink_ca_traject_t, trajectory_coefficient_y) }, \
+         { "trajectory_coefficient_z", NULL, MAVLINK_TYPE_FLOAT, 7, 80, offsetof(mavlink_ca_traject_t, trajectory_coefficient_z) }, \
+         { "trajectory_coefficient_r", NULL, MAVLINK_TYPE_FLOAT, 7, 108, offsetof(mavlink_ca_traject_t, trajectory_coefficient_r) }, \
+         { "num_keyframe", NULL, MAVLINK_TYPE_UINT8_T, 0, 136, offsetof(mavlink_ca_traject_t, num_keyframe) }, \
+         { "index_keyframe", NULL, MAVLINK_TYPE_UINT8_T, 0, 137, offsetof(mavlink_ca_traject_t, index_keyframe) }, \
+         { "order_p_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 138, offsetof(mavlink_ca_traject_t, order_p_1) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_CA_TRAJECT { \
     "CA_TRAJECT", \
-    9, \
+    10, \
     {  { "time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 0, offsetof(mavlink_ca_traject_t, time_usec) }, \
-         { "t", NULL, MAVLINK_TYPE_FLOAT, 2, 8, offsetof(mavlink_ca_traject_t, t) }, \
-         { "trajectory_coefficient_x", NULL, MAVLINK_TYPE_FLOAT, 7, 16, offsetof(mavlink_ca_traject_t, trajectory_coefficient_x) }, \
-         { "trajectory_coefficient_y", NULL, MAVLINK_TYPE_FLOAT, 7, 44, offsetof(mavlink_ca_traject_t, trajectory_coefficient_y) }, \
-         { "trajectory_coefficient_z", NULL, MAVLINK_TYPE_FLOAT, 7, 72, offsetof(mavlink_ca_traject_t, trajectory_coefficient_z) }, \
-         { "trajectory_coefficient_r", NULL, MAVLINK_TYPE_FLOAT, 7, 100, offsetof(mavlink_ca_traject_t, trajectory_coefficient_r) }, \
-         { "num_keyframe", NULL, MAVLINK_TYPE_UINT8_T, 0, 128, offsetof(mavlink_ca_traject_t, num_keyframe) }, \
-         { "index_keyframe", NULL, MAVLINK_TYPE_UINT8_T, 0, 129, offsetof(mavlink_ca_traject_t, index_keyframe) }, \
-         { "order_p_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 130, offsetof(mavlink_ca_traject_t, order_p_1) }, \
+         { "PC_time_usec", NULL, MAVLINK_TYPE_UINT64_T, 0, 8, offsetof(mavlink_ca_traject_t, PC_time_usec) }, \
+         { "t", NULL, MAVLINK_TYPE_FLOAT, 2, 16, offsetof(mavlink_ca_traject_t, t) }, \
+         { "trajectory_coefficient_x", NULL, MAVLINK_TYPE_FLOAT, 7, 24, offsetof(mavlink_ca_traject_t, trajectory_coefficient_x) }, \
+         { "trajectory_coefficient_y", NULL, MAVLINK_TYPE_FLOAT, 7, 52, offsetof(mavlink_ca_traject_t, trajectory_coefficient_y) }, \
+         { "trajectory_coefficient_z", NULL, MAVLINK_TYPE_FLOAT, 7, 80, offsetof(mavlink_ca_traject_t, trajectory_coefficient_z) }, \
+         { "trajectory_coefficient_r", NULL, MAVLINK_TYPE_FLOAT, 7, 108, offsetof(mavlink_ca_traject_t, trajectory_coefficient_r) }, \
+         { "num_keyframe", NULL, MAVLINK_TYPE_UINT8_T, 0, 136, offsetof(mavlink_ca_traject_t, num_keyframe) }, \
+         { "index_keyframe", NULL, MAVLINK_TYPE_UINT8_T, 0, 137, offsetof(mavlink_ca_traject_t, index_keyframe) }, \
+         { "order_p_1", NULL, MAVLINK_TYPE_UINT8_T, 0, 138, offsetof(mavlink_ca_traject_t, order_p_1) }, \
          } \
 }
 #endif
@@ -70,6 +73,7 @@ typedef struct __mavlink_ca_traject_t {
  * @param msg The MAVLink message to compress the data into
  *
  * @param time_usec Timestamp (micros since boot or Unix epoch)
+ * @param PC_time_usec Timestamp (micros since boot or Unix epoch)
  * @param num_keyframe Total num of keyframe
  * @param index_keyframe Index of keyframe
  * @param order_p_1 Order plus one
@@ -81,23 +85,25 @@ typedef struct __mavlink_ca_traject_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_ca_traject_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint64_t time_usec, uint8_t num_keyframe, uint8_t index_keyframe, uint8_t order_p_1, const float *t, const float *trajectory_coefficient_x, const float *trajectory_coefficient_y, const float *trajectory_coefficient_z, const float *trajectory_coefficient_r)
+                               uint64_t time_usec, uint64_t PC_time_usec, uint8_t num_keyframe, uint8_t index_keyframe, uint8_t order_p_1, const float *t, const float *trajectory_coefficient_x, const float *trajectory_coefficient_y, const float *trajectory_coefficient_z, const float *trajectory_coefficient_r)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CA_TRAJECT_LEN];
     _mav_put_uint64_t(buf, 0, time_usec);
-    _mav_put_uint8_t(buf, 128, num_keyframe);
-    _mav_put_uint8_t(buf, 129, index_keyframe);
-    _mav_put_uint8_t(buf, 130, order_p_1);
-    _mav_put_float_array(buf, 8, t, 2);
-    _mav_put_float_array(buf, 16, trajectory_coefficient_x, 7);
-    _mav_put_float_array(buf, 44, trajectory_coefficient_y, 7);
-    _mav_put_float_array(buf, 72, trajectory_coefficient_z, 7);
-    _mav_put_float_array(buf, 100, trajectory_coefficient_r, 7);
+    _mav_put_uint64_t(buf, 8, PC_time_usec);
+    _mav_put_uint8_t(buf, 136, num_keyframe);
+    _mav_put_uint8_t(buf, 137, index_keyframe);
+    _mav_put_uint8_t(buf, 138, order_p_1);
+    _mav_put_float_array(buf, 16, t, 2);
+    _mav_put_float_array(buf, 24, trajectory_coefficient_x, 7);
+    _mav_put_float_array(buf, 52, trajectory_coefficient_y, 7);
+    _mav_put_float_array(buf, 80, trajectory_coefficient_z, 7);
+    _mav_put_float_array(buf, 108, trajectory_coefficient_r, 7);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CA_TRAJECT_LEN);
 #else
     mavlink_ca_traject_t packet;
     packet.time_usec = time_usec;
+    packet.PC_time_usec = PC_time_usec;
     packet.num_keyframe = num_keyframe;
     packet.index_keyframe = index_keyframe;
     packet.order_p_1 = order_p_1;
@@ -120,6 +126,7 @@ static inline uint16_t mavlink_msg_ca_traject_pack(uint8_t system_id, uint8_t co
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
  * @param time_usec Timestamp (micros since boot or Unix epoch)
+ * @param PC_time_usec Timestamp (micros since boot or Unix epoch)
  * @param num_keyframe Total num of keyframe
  * @param index_keyframe Index of keyframe
  * @param order_p_1 Order plus one
@@ -132,23 +139,25 @@ static inline uint16_t mavlink_msg_ca_traject_pack(uint8_t system_id, uint8_t co
  */
 static inline uint16_t mavlink_msg_ca_traject_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint64_t time_usec,uint8_t num_keyframe,uint8_t index_keyframe,uint8_t order_p_1,const float *t,const float *trajectory_coefficient_x,const float *trajectory_coefficient_y,const float *trajectory_coefficient_z,const float *trajectory_coefficient_r)
+                                   uint64_t time_usec,uint64_t PC_time_usec,uint8_t num_keyframe,uint8_t index_keyframe,uint8_t order_p_1,const float *t,const float *trajectory_coefficient_x,const float *trajectory_coefficient_y,const float *trajectory_coefficient_z,const float *trajectory_coefficient_r)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CA_TRAJECT_LEN];
     _mav_put_uint64_t(buf, 0, time_usec);
-    _mav_put_uint8_t(buf, 128, num_keyframe);
-    _mav_put_uint8_t(buf, 129, index_keyframe);
-    _mav_put_uint8_t(buf, 130, order_p_1);
-    _mav_put_float_array(buf, 8, t, 2);
-    _mav_put_float_array(buf, 16, trajectory_coefficient_x, 7);
-    _mav_put_float_array(buf, 44, trajectory_coefficient_y, 7);
-    _mav_put_float_array(buf, 72, trajectory_coefficient_z, 7);
-    _mav_put_float_array(buf, 100, trajectory_coefficient_r, 7);
+    _mav_put_uint64_t(buf, 8, PC_time_usec);
+    _mav_put_uint8_t(buf, 136, num_keyframe);
+    _mav_put_uint8_t(buf, 137, index_keyframe);
+    _mav_put_uint8_t(buf, 138, order_p_1);
+    _mav_put_float_array(buf, 16, t, 2);
+    _mav_put_float_array(buf, 24, trajectory_coefficient_x, 7);
+    _mav_put_float_array(buf, 52, trajectory_coefficient_y, 7);
+    _mav_put_float_array(buf, 80, trajectory_coefficient_z, 7);
+    _mav_put_float_array(buf, 108, trajectory_coefficient_r, 7);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CA_TRAJECT_LEN);
 #else
     mavlink_ca_traject_t packet;
     packet.time_usec = time_usec;
+    packet.PC_time_usec = PC_time_usec;
     packet.num_keyframe = num_keyframe;
     packet.index_keyframe = index_keyframe;
     packet.order_p_1 = order_p_1;
@@ -174,7 +183,7 @@ static inline uint16_t mavlink_msg_ca_traject_pack_chan(uint8_t system_id, uint8
  */
 static inline uint16_t mavlink_msg_ca_traject_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_ca_traject_t* ca_traject)
 {
-    return mavlink_msg_ca_traject_pack(system_id, component_id, msg, ca_traject->time_usec, ca_traject->num_keyframe, ca_traject->index_keyframe, ca_traject->order_p_1, ca_traject->t, ca_traject->trajectory_coefficient_x, ca_traject->trajectory_coefficient_y, ca_traject->trajectory_coefficient_z, ca_traject->trajectory_coefficient_r);
+    return mavlink_msg_ca_traject_pack(system_id, component_id, msg, ca_traject->time_usec, ca_traject->PC_time_usec, ca_traject->num_keyframe, ca_traject->index_keyframe, ca_traject->order_p_1, ca_traject->t, ca_traject->trajectory_coefficient_x, ca_traject->trajectory_coefficient_y, ca_traject->trajectory_coefficient_z, ca_traject->trajectory_coefficient_r);
 }
 
 /**
@@ -188,7 +197,7 @@ static inline uint16_t mavlink_msg_ca_traject_encode(uint8_t system_id, uint8_t 
  */
 static inline uint16_t mavlink_msg_ca_traject_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_ca_traject_t* ca_traject)
 {
-    return mavlink_msg_ca_traject_pack_chan(system_id, component_id, chan, msg, ca_traject->time_usec, ca_traject->num_keyframe, ca_traject->index_keyframe, ca_traject->order_p_1, ca_traject->t, ca_traject->trajectory_coefficient_x, ca_traject->trajectory_coefficient_y, ca_traject->trajectory_coefficient_z, ca_traject->trajectory_coefficient_r);
+    return mavlink_msg_ca_traject_pack_chan(system_id, component_id, chan, msg, ca_traject->time_usec, ca_traject->PC_time_usec, ca_traject->num_keyframe, ca_traject->index_keyframe, ca_traject->order_p_1, ca_traject->t, ca_traject->trajectory_coefficient_x, ca_traject->trajectory_coefficient_y, ca_traject->trajectory_coefficient_z, ca_traject->trajectory_coefficient_r);
 }
 
 /**
@@ -196,6 +205,7 @@ static inline uint16_t mavlink_msg_ca_traject_encode_chan(uint8_t system_id, uin
  * @param chan MAVLink channel to send the message
  *
  * @param time_usec Timestamp (micros since boot or Unix epoch)
+ * @param PC_time_usec Timestamp (micros since boot or Unix epoch)
  * @param num_keyframe Total num of keyframe
  * @param index_keyframe Index of keyframe
  * @param order_p_1 Order plus one
@@ -207,23 +217,25 @@ static inline uint16_t mavlink_msg_ca_traject_encode_chan(uint8_t system_id, uin
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_ca_traject_send(mavlink_channel_t chan, uint64_t time_usec, uint8_t num_keyframe, uint8_t index_keyframe, uint8_t order_p_1, const float *t, const float *trajectory_coefficient_x, const float *trajectory_coefficient_y, const float *trajectory_coefficient_z, const float *trajectory_coefficient_r)
+static inline void mavlink_msg_ca_traject_send(mavlink_channel_t chan, uint64_t time_usec, uint64_t PC_time_usec, uint8_t num_keyframe, uint8_t index_keyframe, uint8_t order_p_1, const float *t, const float *trajectory_coefficient_x, const float *trajectory_coefficient_y, const float *trajectory_coefficient_z, const float *trajectory_coefficient_r)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CA_TRAJECT_LEN];
     _mav_put_uint64_t(buf, 0, time_usec);
-    _mav_put_uint8_t(buf, 128, num_keyframe);
-    _mav_put_uint8_t(buf, 129, index_keyframe);
-    _mav_put_uint8_t(buf, 130, order_p_1);
-    _mav_put_float_array(buf, 8, t, 2);
-    _mav_put_float_array(buf, 16, trajectory_coefficient_x, 7);
-    _mav_put_float_array(buf, 44, trajectory_coefficient_y, 7);
-    _mav_put_float_array(buf, 72, trajectory_coefficient_z, 7);
-    _mav_put_float_array(buf, 100, trajectory_coefficient_r, 7);
+    _mav_put_uint64_t(buf, 8, PC_time_usec);
+    _mav_put_uint8_t(buf, 136, num_keyframe);
+    _mav_put_uint8_t(buf, 137, index_keyframe);
+    _mav_put_uint8_t(buf, 138, order_p_1);
+    _mav_put_float_array(buf, 16, t, 2);
+    _mav_put_float_array(buf, 24, trajectory_coefficient_x, 7);
+    _mav_put_float_array(buf, 52, trajectory_coefficient_y, 7);
+    _mav_put_float_array(buf, 80, trajectory_coefficient_z, 7);
+    _mav_put_float_array(buf, 108, trajectory_coefficient_r, 7);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CA_TRAJECT, buf, MAVLINK_MSG_ID_CA_TRAJECT_MIN_LEN, MAVLINK_MSG_ID_CA_TRAJECT_LEN, MAVLINK_MSG_ID_CA_TRAJECT_CRC);
 #else
     mavlink_ca_traject_t packet;
     packet.time_usec = time_usec;
+    packet.PC_time_usec = PC_time_usec;
     packet.num_keyframe = num_keyframe;
     packet.index_keyframe = index_keyframe;
     packet.order_p_1 = order_p_1;
@@ -244,7 +256,7 @@ static inline void mavlink_msg_ca_traject_send(mavlink_channel_t chan, uint64_t 
 static inline void mavlink_msg_ca_traject_send_struct(mavlink_channel_t chan, const mavlink_ca_traject_t* ca_traject)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_ca_traject_send(chan, ca_traject->time_usec, ca_traject->num_keyframe, ca_traject->index_keyframe, ca_traject->order_p_1, ca_traject->t, ca_traject->trajectory_coefficient_x, ca_traject->trajectory_coefficient_y, ca_traject->trajectory_coefficient_z, ca_traject->trajectory_coefficient_r);
+    mavlink_msg_ca_traject_send(chan, ca_traject->time_usec, ca_traject->PC_time_usec, ca_traject->num_keyframe, ca_traject->index_keyframe, ca_traject->order_p_1, ca_traject->t, ca_traject->trajectory_coefficient_x, ca_traject->trajectory_coefficient_y, ca_traject->trajectory_coefficient_z, ca_traject->trajectory_coefficient_r);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CA_TRAJECT, (const char *)ca_traject, MAVLINK_MSG_ID_CA_TRAJECT_MIN_LEN, MAVLINK_MSG_ID_CA_TRAJECT_LEN, MAVLINK_MSG_ID_CA_TRAJECT_CRC);
 #endif
@@ -258,23 +270,25 @@ static inline void mavlink_msg_ca_traject_send_struct(mavlink_channel_t chan, co
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_ca_traject_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint8_t num_keyframe, uint8_t index_keyframe, uint8_t order_p_1, const float *t, const float *trajectory_coefficient_x, const float *trajectory_coefficient_y, const float *trajectory_coefficient_z, const float *trajectory_coefficient_r)
+static inline void mavlink_msg_ca_traject_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint64_t time_usec, uint64_t PC_time_usec, uint8_t num_keyframe, uint8_t index_keyframe, uint8_t order_p_1, const float *t, const float *trajectory_coefficient_x, const float *trajectory_coefficient_y, const float *trajectory_coefficient_z, const float *trajectory_coefficient_r)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint64_t(buf, 0, time_usec);
-    _mav_put_uint8_t(buf, 128, num_keyframe);
-    _mav_put_uint8_t(buf, 129, index_keyframe);
-    _mav_put_uint8_t(buf, 130, order_p_1);
-    _mav_put_float_array(buf, 8, t, 2);
-    _mav_put_float_array(buf, 16, trajectory_coefficient_x, 7);
-    _mav_put_float_array(buf, 44, trajectory_coefficient_y, 7);
-    _mav_put_float_array(buf, 72, trajectory_coefficient_z, 7);
-    _mav_put_float_array(buf, 100, trajectory_coefficient_r, 7);
+    _mav_put_uint64_t(buf, 8, PC_time_usec);
+    _mav_put_uint8_t(buf, 136, num_keyframe);
+    _mav_put_uint8_t(buf, 137, index_keyframe);
+    _mav_put_uint8_t(buf, 138, order_p_1);
+    _mav_put_float_array(buf, 16, t, 2);
+    _mav_put_float_array(buf, 24, trajectory_coefficient_x, 7);
+    _mav_put_float_array(buf, 52, trajectory_coefficient_y, 7);
+    _mav_put_float_array(buf, 80, trajectory_coefficient_z, 7);
+    _mav_put_float_array(buf, 108, trajectory_coefficient_r, 7);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CA_TRAJECT, buf, MAVLINK_MSG_ID_CA_TRAJECT_MIN_LEN, MAVLINK_MSG_ID_CA_TRAJECT_LEN, MAVLINK_MSG_ID_CA_TRAJECT_CRC);
 #else
     mavlink_ca_traject_t *packet = (mavlink_ca_traject_t *)msgbuf;
     packet->time_usec = time_usec;
+    packet->PC_time_usec = PC_time_usec;
     packet->num_keyframe = num_keyframe;
     packet->index_keyframe = index_keyframe;
     packet->order_p_1 = order_p_1;
@@ -304,13 +318,23 @@ static inline uint64_t mavlink_msg_ca_traject_get_time_usec(const mavlink_messag
 }
 
 /**
+ * @brief Get field PC_time_usec from ca_traject message
+ *
+ * @return Timestamp (micros since boot or Unix epoch)
+ */
+static inline uint64_t mavlink_msg_ca_traject_get_PC_time_usec(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint64_t(msg,  8);
+}
+
+/**
  * @brief Get field num_keyframe from ca_traject message
  *
  * @return Total num of keyframe
  */
 static inline uint8_t mavlink_msg_ca_traject_get_num_keyframe(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  128);
+    return _MAV_RETURN_uint8_t(msg,  136);
 }
 
 /**
@@ -320,7 +344,7 @@ static inline uint8_t mavlink_msg_ca_traject_get_num_keyframe(const mavlink_mess
  */
 static inline uint8_t mavlink_msg_ca_traject_get_index_keyframe(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  129);
+    return _MAV_RETURN_uint8_t(msg,  137);
 }
 
 /**
@@ -330,7 +354,7 @@ static inline uint8_t mavlink_msg_ca_traject_get_index_keyframe(const mavlink_me
  */
 static inline uint8_t mavlink_msg_ca_traject_get_order_p_1(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  130);
+    return _MAV_RETURN_uint8_t(msg,  138);
 }
 
 /**
@@ -340,7 +364,7 @@ static inline uint8_t mavlink_msg_ca_traject_get_order_p_1(const mavlink_message
  */
 static inline uint16_t mavlink_msg_ca_traject_get_t(const mavlink_message_t* msg, float *t)
 {
-    return _MAV_RETURN_float_array(msg, t, 2,  8);
+    return _MAV_RETURN_float_array(msg, t, 2,  16);
 }
 
 /**
@@ -350,7 +374,7 @@ static inline uint16_t mavlink_msg_ca_traject_get_t(const mavlink_message_t* msg
  */
 static inline uint16_t mavlink_msg_ca_traject_get_trajectory_coefficient_x(const mavlink_message_t* msg, float *trajectory_coefficient_x)
 {
-    return _MAV_RETURN_float_array(msg, trajectory_coefficient_x, 7,  16);
+    return _MAV_RETURN_float_array(msg, trajectory_coefficient_x, 7,  24);
 }
 
 /**
@@ -360,7 +384,7 @@ static inline uint16_t mavlink_msg_ca_traject_get_trajectory_coefficient_x(const
  */
 static inline uint16_t mavlink_msg_ca_traject_get_trajectory_coefficient_y(const mavlink_message_t* msg, float *trajectory_coefficient_y)
 {
-    return _MAV_RETURN_float_array(msg, trajectory_coefficient_y, 7,  44);
+    return _MAV_RETURN_float_array(msg, trajectory_coefficient_y, 7,  52);
 }
 
 /**
@@ -370,7 +394,7 @@ static inline uint16_t mavlink_msg_ca_traject_get_trajectory_coefficient_y(const
  */
 static inline uint16_t mavlink_msg_ca_traject_get_trajectory_coefficient_z(const mavlink_message_t* msg, float *trajectory_coefficient_z)
 {
-    return _MAV_RETURN_float_array(msg, trajectory_coefficient_z, 7,  72);
+    return _MAV_RETURN_float_array(msg, trajectory_coefficient_z, 7,  80);
 }
 
 /**
@@ -380,7 +404,7 @@ static inline uint16_t mavlink_msg_ca_traject_get_trajectory_coefficient_z(const
  */
 static inline uint16_t mavlink_msg_ca_traject_get_trajectory_coefficient_r(const mavlink_message_t* msg, float *trajectory_coefficient_r)
 {
-    return _MAV_RETURN_float_array(msg, trajectory_coefficient_r, 7,  100);
+    return _MAV_RETURN_float_array(msg, trajectory_coefficient_r, 7,  108);
 }
 
 /**
@@ -393,6 +417,7 @@ static inline void mavlink_msg_ca_traject_decode(const mavlink_message_t* msg, m
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     ca_traject->time_usec = mavlink_msg_ca_traject_get_time_usec(msg);
+    ca_traject->PC_time_usec = mavlink_msg_ca_traject_get_PC_time_usec(msg);
     mavlink_msg_ca_traject_get_t(msg, ca_traject->t);
     mavlink_msg_ca_traject_get_trajectory_coefficient_x(msg, ca_traject->trajectory_coefficient_x);
     mavlink_msg_ca_traject_get_trajectory_coefficient_y(msg, ca_traject->trajectory_coefficient_y);

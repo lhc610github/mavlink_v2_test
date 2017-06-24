@@ -7127,11 +7127,12 @@ static void mavlink_test_ca_traject(uint8_t system_id, uint8_t component_id, mav
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_ca_traject_t packet_in = {
-        93372036854775807ULL,{ 73.0, 74.0 },{ 129.0, 130.0, 131.0, 132.0, 133.0, 134.0, 135.0 },{ 325.0, 326.0, 327.0, 328.0, 329.0, 330.0, 331.0 },{ 521.0, 522.0, 523.0, 524.0, 525.0, 526.0, 527.0 },{ 717.0, 718.0, 719.0, 720.0, 721.0, 722.0, 723.0 },133,200,11
+        93372036854775807ULL,93372036854776311ULL,{ 129.0, 130.0 },{ 185.0, 186.0, 187.0, 188.0, 189.0, 190.0, 191.0 },{ 381.0, 382.0, 383.0, 384.0, 385.0, 386.0, 387.0 },{ 577.0, 578.0, 579.0, 580.0, 581.0, 582.0, 583.0 },{ 773.0, 774.0, 775.0, 776.0, 777.0, 778.0, 779.0 },157,224,35
     };
     mavlink_ca_traject_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
         packet1.time_usec = packet_in.time_usec;
+        packet1.PC_time_usec = packet_in.PC_time_usec;
         packet1.num_keyframe = packet_in.num_keyframe;
         packet1.index_keyframe = packet_in.index_keyframe;
         packet1.order_p_1 = packet_in.order_p_1;
@@ -7154,12 +7155,12 @@ static void mavlink_test_ca_traject(uint8_t system_id, uint8_t component_id, mav
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_ca_traject_pack(system_id, component_id, &msg , packet1.time_usec , packet1.num_keyframe , packet1.index_keyframe , packet1.order_p_1 , packet1.t , packet1.trajectory_coefficient_x , packet1.trajectory_coefficient_y , packet1.trajectory_coefficient_z , packet1.trajectory_coefficient_r );
+    mavlink_msg_ca_traject_pack(system_id, component_id, &msg , packet1.time_usec , packet1.PC_time_usec , packet1.num_keyframe , packet1.index_keyframe , packet1.order_p_1 , packet1.t , packet1.trajectory_coefficient_x , packet1.trajectory_coefficient_y , packet1.trajectory_coefficient_z , packet1.trajectory_coefficient_r );
     mavlink_msg_ca_traject_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_ca_traject_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.num_keyframe , packet1.index_keyframe , packet1.order_p_1 , packet1.t , packet1.trajectory_coefficient_x , packet1.trajectory_coefficient_y , packet1.trajectory_coefficient_z , packet1.trajectory_coefficient_r );
+    mavlink_msg_ca_traject_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.time_usec , packet1.PC_time_usec , packet1.num_keyframe , packet1.index_keyframe , packet1.order_p_1 , packet1.t , packet1.trajectory_coefficient_x , packet1.trajectory_coefficient_y , packet1.trajectory_coefficient_z , packet1.trajectory_coefficient_r );
     mavlink_msg_ca_traject_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -7172,7 +7173,7 @@ static void mavlink_test_ca_traject(uint8_t system_id, uint8_t component_id, mav
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_ca_traject_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.num_keyframe , packet1.index_keyframe , packet1.order_p_1 , packet1.t , packet1.trajectory_coefficient_x , packet1.trajectory_coefficient_y , packet1.trajectory_coefficient_z , packet1.trajectory_coefficient_r );
+    mavlink_msg_ca_traject_send(MAVLINK_COMM_1 , packet1.time_usec , packet1.PC_time_usec , packet1.num_keyframe , packet1.index_keyframe , packet1.order_p_1 , packet1.t , packet1.trajectory_coefficient_x , packet1.trajectory_coefficient_y , packet1.trajectory_coefficient_z , packet1.trajectory_coefficient_r );
     mavlink_msg_ca_traject_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 }
