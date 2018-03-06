@@ -3997,6 +3997,12 @@
     <field type="float[4]" name="vel_d">desire vel</field>
     <field type="float[4]" name="acc_d">desire position</field>
   </message>
+  <message id="155" name="AP_UAVS_FUNC_RES">
+    <description>The avoid potential function res for confliction between uavs</description>
+    <field type="uint64_t" name="time_usec" units="us">Timestamp (micros since boot or Unix epoch)</field>
+    <field type="uint8_t" name="num_uavs">Num of neighbour uavs</field>
+    <field type="float[3]" name="ap_ctrl_vel">Virtual control virable in velocity</field>
+  </message>
     <!-- MESSAGE IDs 180 - 229: Space for custom messages in individual projectname_messages.xml files -->
     <message id="230" name="ESTIMATOR_STATUS">
       <description>Estimator status message including flags, innovation test ratios and estimated accuracies. The flags message is an integer bitmask containing information on which EKF outputs are valid. See the ESTIMATOR_STATUS_FLAGS enum definition for further information. The innovaton test ratios show the magnitude of the sensor innovation divided by the innovation check threshold. Under normal operation the innovaton test ratios should be below 0.5 with occasional values up to 1.0. Values greater than 1.0 should be rare under normal operation and indicate that a measurement has been rejected by the filter. The user should be notified if an innovation test ratio greater than 1.0 is recorded. Notifications for values in the range between 0.5 and 1.0 should be optional and controllable by the user.</description>
